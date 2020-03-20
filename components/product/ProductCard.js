@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     // width: "80%",
     fontFamily: "Montserrat-Bold",
     fontSize: 16,
-    overflow: "hidden"
+    overflow: "hidden",
+    color: Colors.productInfo
   },
   productPrice: {
     fontFamily: "Montserrat-Bold",

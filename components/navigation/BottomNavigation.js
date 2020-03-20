@@ -28,7 +28,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Shop",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="home-outline" title="Shop" />
+            <TabBarIcon
+              focused={focused}
+              name={focused ? "home" : "home-outline"}
+              title="Shop"
+            />
           )
         }}
       />
@@ -40,7 +44,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               focused={focused}
-              name="plus-circle-outline"
+              name={focused ? "plus-circle" : "plus-circle-outline"}
               title="Sell"
             />
           )
@@ -54,7 +58,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               focused={focused}
-              name="chat-bubble-outline"
+              name={focused ? "chat-bubble" : "chat-bubble-outline"}
               title="Inbox"
             />
           )
@@ -68,7 +72,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               focused={focused}
-              name="person-outline"
+              name={focused ? "person" : "person-outline"}
               title="Profile"
             />
           )

@@ -8,7 +8,6 @@ import {
   TouchableOpacity
 } from "react-native";
 import ProductCard from "../product/ProductCard";
-import ProductListing from "../product/ProductListing";
 
 let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 5];
 

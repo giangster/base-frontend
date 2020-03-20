@@ -32,7 +32,6 @@ export default function App(props) {
           "Montserrat-Light": require("./assets/fonts/Montserrat-Light.ttf")
         });
       } catch (e) {
-        // We might want to provide this error information to an error reporting service
         console.warn(e);
       } finally {
         setLoadingComplete(true);

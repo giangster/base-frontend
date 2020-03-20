@@ -12,5 +12,6 @@ export default {
   noticeBackground: tintColor,
   noticeText: "#fff",
   priceColor: "#40c319",
-  productInfoBorder: "#fefefe"
+  productInfoBorder: "#fefefe",
+  productInfo: "black"
 };
