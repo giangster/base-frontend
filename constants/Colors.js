@@ -11,5 +11,6 @@ export default {
   warningText: "#666804",
   noticeBackground: tintColor,
   noticeText: "#fff",
-  priceColor: "#40c319"
+  priceColor: "#40c319",
+  productInfoBorder: "#fefefe"
 };

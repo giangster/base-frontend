@@ -26,7 +26,10 @@ export default function App(props) {
         setInitialNavigationState(await getInitialState());
 
         await Font.loadAsync({
-          "Acronym-ExtraBlack": require("./assets/fonts/Acronym-Extrablack_Italic.otf")
+          "Acronym-ExtraBlack": require("./assets/fonts/Acronym-Extrablack_Italic.otf"),
+          "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+          "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.ttf"),
+          "Montserrat-Light": require("./assets/fonts/Montserrat-Light.ttf")
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

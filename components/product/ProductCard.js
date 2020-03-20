@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { BoldText, MediumText, LightText } from "../custom-text/CustomText";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import Colors from "../../constants/Colors";
 
 const ProductCard = () => {
   return (
@@ -11,15 +10,19 @@ const ProductCard = () => {
         source={require("../../assets/images/icon.png")}
       />
       <View style={styles.productNamePrice}>
-        <BoldText>Product Name</BoldText>
-        <BoldText style={styles.productPrice}>100€</BoldText>
+        <Text numberOfLines={1} style={styles.productName}>
+          Product Name Is Kinda Long
+        </Text>
       </View>
-      <View>
-        <MediumText>Product model</MediumText>
-      </View>
-      <View>
-        <LightText>size: product size</LightText>
-        <LightText>cond: product condition</LightText>
+
+      {/* <Text numberOfLines={1} style={styles.productModel}>
+        Product model
+      </Text> */}
+
+      <View style={styles.productSizeCond}>
+        <Text style={styles.productPrice}>100€</Text>
+        <Text style={styles.productSize}>Size: M</Text>
+        {/* <Text style={styles.productCond}>cond: 8</Text> */}
       </View>
     </View>
   );
@@ -28,14 +31,48 @@ const ProductCard = () => {
 export default ProductCard;
 
 const styles = StyleSheet.create({
-  container: { width: "100%", justifyContent: "center", alignItems: "center" },
-  productImage: {
-    width: "50%",
-    height: 200,
-    resizeMode: "stretch"
+  container: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10
   },
-  productNamePrice: { justifyContent: "space-between", fontSize: 20 },
+  productImage: {
+    width: "100%",
+    height: 200,
+    resizeMode: "stretch",
+    marginBottom: 5
+  },
+  productNamePrice: {
+    width: "100%",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  productName: {
+    // width: "80%",
+    fontFamily: "Montserrat-Bold",
+    fontSize: 16,
+    overflow: "hidden"
+  },
   productPrice: {
+    fontFamily: "Montserrat-Bold",
+    fontSize: 16,
     color: Colors.priceColor
+  },
+  productModel: {
+    width: "100%",
+    fontFamily: "Montserrat-Medium"
+  },
+  productSizeCond: {
+    width: "100%",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  productSize: { fontFamily: "Montserrat-Medium" },
+  productCond: {
+    width: "50%",
+    fontFamily: "Montserrat-Light"
   }
 });
