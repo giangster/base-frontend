@@ -13,5 +13,6 @@ export default {
   noticeText: "#fff",
   priceColor: "#40c319",
   productInfoBorder: "#fefefe",
-  productInfo: "black"
+  productInfo: "black",
+  customButton: "#0075ff"
 };

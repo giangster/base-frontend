@@ -10,6 +10,9 @@ import {
 import Swiper from "react-native-swiper";
 import { Rating } from "react-native-elements";
 import Colors from "../../constants/Colors";
+import CustomButton from "../customization/CustomButton";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import BaseBuySafe from "../customization/BaseBuySafe";
 
 let productObj = {
   brand: "Brand",
@@ -93,6 +96,11 @@ const ProductListing = () => {
           <Text style={styles.info}>8/10</Text>
         </View>
       </View>
+      <BaseBuySafe />
+      <CustomButton>
+        Buy it now{" "}
+        <MaterialCommunityIcons name="cart" size={20} color="white" />
+      </CustomButton>
     </ScrollView>
   );
 };
@@ -181,18 +189,3 @@ const styles = StyleSheet.create({
   },
   info: { fontFamily: "Montserrat-Light", fontSize: 16 }
 });
-
-// const sampleObj = {
-//   imgUrl: "pecpec",
-//   description: "pecpec",
-//   location: "sgsgd",
-//   size: "M"
-// };
-
-// Object.keys(sampleObj).map(key => {
-//   console.log(key);
-//   console.log(sampleObj[key]);
-
-//   sampleObj.imgUrl;
-//   sampleObj[someKey];
-// });
