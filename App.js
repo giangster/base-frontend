@@ -51,6 +51,7 @@ export default function App(props) {
         initialState={initialNavigationState}
       >
         <Stack.Navigator
+          headerMode="none"
           screenOptions={{
             headerStyle: {
               backgroundColor: Colors.tabBar
@@ -58,6 +59,18 @@ export default function App(props) {
             headerTintColor: "black",
             headerTitleStyle: {
               fontWeight: "bold"
+            },
+            headerTitleStyle: {
+              color: "black",
+              fontSize: 20,
+              fontFamily: "Acronym-ExtraBlack"
+            }
+          }}
+          options={{
+            headerTitleStyle: {
+              color: "black",
+              fontSize: 20,
+              fontFamily: "Acronym-ExtraBlack"
             }
           }}
         >
