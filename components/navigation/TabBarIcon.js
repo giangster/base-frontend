@@ -6,11 +6,11 @@ import Colors from "../../constants/Colors";
 
 export default function TabBarIcon(props) {
   let icon = null;
-  switch (props.title) {
+  switch (props.route) {
     case "Shop":
       return (icon = (
         <MaterialCommunityIcons
-          size={25}
+          size={30}
           color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           name={props.name}
         />
@@ -18,7 +18,7 @@ export default function TabBarIcon(props) {
     case "Sell":
       return (icon = (
         <MaterialCommunityIcons
-          size={25}
+          size={30}
           color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           name={props.name}
         />
@@ -26,7 +26,7 @@ export default function TabBarIcon(props) {
     case "Inbox":
       return (icon = (
         <MaterialIcons
-          size={25}
+          size={30}
           color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           name={props.name}
         />
@@ -34,7 +34,7 @@ export default function TabBarIcon(props) {
     case "Profile":
       return (icon = (
         <MaterialIcons
-          size={25}
+          size={30}
           color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           name={props.name}
         />

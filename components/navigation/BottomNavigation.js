@@ -19,7 +19,15 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator
       initialRouteName={INITIAL_ROUTE_NAME}
       tabBarOptions={{
-        activeTintColor: "black"
+        activeTintColor: "black",
+        upperCaseLabel: true,
+        labelStyle: {
+          fontSize: 11,
+          textTransform: "uppercase"
+        },
+        activeTintColor: "rgb(48, 60, 165)",
+        inactiveTintColor: "grey",
+        showLabel: false
       }}
     >
       <BottomTab.Screen
@@ -31,7 +39,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon
               focused={focused}
               name={focused ? "home" : "home-outline"}
-              title="Shop"
+              route="Shop"
             />
           )
         }}
@@ -45,7 +53,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon
               focused={focused}
               name={focused ? "plus-circle" : "plus-circle-outline"}
-              title="Sell"
+              route="Sell"
             />
           )
         }}
@@ -59,7 +67,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon
               focused={focused}
               name={focused ? "chat-bubble" : "chat-bubble-outline"}
-              title="Inbox"
+              route="Inbox"
             />
           )
         }}
@@ -73,7 +81,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon
               focused={focused}
               name={focused ? "person" : "person-outline"}
-              title="Profile"
+              route="Profile"
             />
           )
         }}
