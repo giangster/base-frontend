@@ -7,11 +7,13 @@ const BaseBuySafe = () => {
   return (
     <View style={styles.container}>
       <View style={styles.infoBox}>
-        <MaterialCommunityIcons
-          name="shield-half-full"
-          size={40}
-          color={Colors.customButton}
-        />
+        <View style={{ width: "15%" }}>
+          <MaterialCommunityIcons
+            name="shield-half-full"
+            size={40}
+            color={Colors.customButton}
+          />
+        </View>
         <View style={styles.infoText}>
           <Text style={styles.infoTitle}>BASE protection</Text>
           <Text style={styles.info}> Buy & Sell 100% Safely</Text>
@@ -20,10 +22,12 @@ const BaseBuySafe = () => {
       </View>
 
       <View style={styles.infoBox}>
-        <Image
-          source={require("../../assets/images/matkahuolto.png")}
-          style={styles.mhLogo}
-        />
+        <View style={{ width: "15%" }}>
+          <Image
+            source={require("../../assets/images/matkahuolto.png")}
+            style={styles.mhLogo}
+          />
+        </View>
         <View style={styles.infoText}>
           <Text style={styles.infoTitle}>
             Matkahuolto Shipping <Text>4.9€</Text>
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center"
   },
-  infoText: { marginLeft: 20 },
+  infoText: { width: "75%", paddingHorizontal: 20 },
   infoTitle: {
     width: "100%",
     marginVertical: 5,

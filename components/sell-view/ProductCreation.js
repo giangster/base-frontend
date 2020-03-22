@@ -5,24 +5,70 @@ import {
   ScrollView,
   Button,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList,
+  Alert
 } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+
+const EmptyImage = () => {
+  let arr = ["Front", "Back", "Label", "Zoom-in"];
+  return (
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "row",
+        width: "100%",
+        flexWrap: "wrap"
+      }}
+    >
+      {arr.map((i, index) => (
+        <View key={index} style={styles.emptyImg}>
+          <View
+            key={index}
+            style={{
+              height: 140,
+              borderStyle: "dashed",
+              borderColor: "black",
+              borderWidth: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Text
+              key={index}
+              style={{
+                fontFamily: "Montserrat-Light"
+              }}
+            >
+              {i}
+            </Text>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+};
 
 const ProductCreation = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [photoName, setPhotoName] = useState("");
-  const [photoBase64, setPhotoBase64] = useState("");
+  const [photoArray, setPhotoArray] = useState([]);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const camera = useRef(null);
 
   const snap = async () => {
     if (camera) {
       let photo = await camera.current.takePictureAsync({ base64: true });
+      if (photoArray.length >= 10) {
+        Alert.alert("Maximum number of photos is 10");
+        return;
+      }
       setPhotoName(photo.uri);
-      setPhotoBase64(photo.base64);
+      setPhotoArray([...photoArray, photo.uri]);
     }
   };
 
@@ -41,7 +87,7 @@ const ProductCreation = () => {
   }
   return (
     <View style={{ flex: 1 }}>
-      <Camera style={{ flex: 1 }} type={type} ref={camera}>
+      <Camera style={{ flex: 4 }} type={type} ref={camera}>
         <View
           style={{
             flex: 1,
@@ -49,41 +95,84 @@ const ProductCreation = () => {
             flexDirection: "row"
           }}
         >
-          <TouchableOpacity
+          <View
             style={{
               flex: 1,
-              alignSelf: "flex-end",
-              alignItems: "center"
-            }}
-            onPress={() => {
-              setType(
-                type === Camera.Constants.Type.back
-                  ? Camera.Constants.Type.front
-                  : Camera.Constants.Type.back
-              );
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              alignSelf: "flex-end"
             }}
           >
-            <Text style={{ fontSize: 18, marginBottom: 10, color: "white" }}>
-              Flip
-            </Text>
-          </TouchableOpacity>
-          <View>
-            <Button title="TakePhoto" onPress={snap} />
+            <TouchableOpacity
+              onPress={() => {
+                setType(
+                  type === Camera.Constants.Type.back
+                    ? Camera.Constants.Type.front
+                    : Camera.Constants.Type.back
+                );
+              }}
+            >
+              <Ionicons
+                name="ios-reverse-camera"
+                color="white"
+                size={40}
+                style={{ opacity: 0.6 }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={snap}>
+              <MaterialCommunityIcons
+                name="circle-slice-8"
+                color="white"
+                size={80}
+                style={{ opacity: 0.6 }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
-
-        <View style={{ flex: 4 }}>
-          <Image style={{ flex: 1 }} source={{ uri: photoName }} />
-          <Image
-            style={{ flex: 1 }}
-            source={{ uri: `data:image/gif;base64,${photoBase64}` }}
-          />
-        </View>
       </Camera>
+      <ScrollView style={{ flex: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            width: "100%",
+            flexWrap: "wrap"
+          }}
+        >
+          {photoArray.length > 0 ? (
+            photoArray.map((photoName, index) => (
+              <View style={styles.photoContainer} key={index}>
+                <Image
+                  key={index}
+                  style={{ flex: 1 }}
+                  source={{ uri: photoName }}
+                />
+              </View>
+            ))
+          ) : (
+            <EmptyImage />
+          )}
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
 export default ProductCreation;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  photoContainer: {
+    marginVertical: 10,
+    width: "25%",
+    height: 150,
+    padding: 5,
+    resizeMode: "cover"
+  },
+  emptyImg: {
+    marginVertical: 10,
+    width: "25%",
+    height: 150,
+    padding: 5
+  }
+});
