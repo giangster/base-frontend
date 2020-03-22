@@ -32,10 +32,23 @@ export default ProductCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: "95%",
+    borderWidth: 1,
+    borderColor: Colors.productInfoBorder,
+    backgroundColor: Colors.productInfoBorder,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
-    padding: 10
+
+    margin: 5
   },
   productImage: {
     width: "100%",
@@ -47,14 +60,16 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    padding: 10
   },
   productName: {
     // width: "80%",
-    fontFamily: "Montserrat-Bold",
+    fontFamily: "Montserrat-Medium",
     fontSize: 16,
     overflow: "hidden",
-    color: Colors.productInfo
+    color: Colors.productInfo,
+    textTransform: "uppercase"
   },
   productPrice: {
     fontFamily: "Montserrat-Bold",
@@ -69,7 +84,9 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    paddingBottom: 15
   },
   productSize: { fontFamily: "Montserrat-Medium" },
   productCond: {
