@@ -55,7 +55,8 @@ export default function BottomTabNavigator({ navigation, route }) {
               name={focused ? "plus-circle" : "plus-circle-outline"}
               route="Sell"
             />
-          )
+          ),
+          tabBarVisible: false
         }}
       />
       <BottomTab.Screen

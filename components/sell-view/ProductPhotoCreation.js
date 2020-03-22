@@ -12,10 +12,15 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  FontAwesome
+} from "@expo/vector-icons";
+
+let photoSuggestions = ["Front", "Back", "Label", "Zoom-in"];
 
 const EmptyImage = () => {
-  let arr = ["Front", "Back", "Label", "Zoom-in"];
   return (
     <View
       style={{
@@ -25,7 +30,7 @@ const EmptyImage = () => {
         flexWrap: "wrap"
       }}
     >
-      {arr.map((i, index) => (
+      {photoSuggestions.map((suggestion, index) => (
         <View key={index} style={styles.emptyImg}>
           <View
             key={index}
@@ -44,7 +49,7 @@ const EmptyImage = () => {
                 fontFamily: "Montserrat-Light"
               }}
             >
-              {i}
+              {suggestion}
             </Text>
           </View>
         </View>
@@ -53,7 +58,7 @@ const EmptyImage = () => {
   );
 };
 
-const ProductCreation = () => {
+const ProductPhotoCreation = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [photoName, setPhotoName] = useState("");
   const [photoArray, setPhotoArray] = useState([]);
@@ -70,6 +75,11 @@ const ProductCreation = () => {
       setPhotoName(photo.uri);
       setPhotoArray([...photoArray, photo.uri]);
     }
+  };
+
+  const removeImg = toBeDeleted => {
+    let newArr = photoArray.filter((photo, index) => index !== toBeDeleted);
+    setPhotoArray(newArr);
   };
 
   useEffect(() => {
@@ -132,14 +142,7 @@ const ProductCreation = () => {
         </View>
       </Camera>
       <ScrollView style={{ flex: 1 }}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            width: "100%",
-            flexWrap: "wrap"
-          }}
-        >
+        <View style={styles.photoGalleryContainer}>
           {photoArray.length > 0 ? (
             photoArray.map((photoName, index) => (
               <View style={styles.photoContainer} key={index}>
@@ -148,6 +151,16 @@ const ProductCreation = () => {
                   style={{ flex: 1 }}
                   source={{ uri: photoName }}
                 />
+                <TouchableOpacity
+                  style={styles.removeImgButton}
+                  onPress={() => removeImg(index)}
+                >
+                  <FontAwesome
+                    name="remove"
+                    size={20}
+                    style={{ opacity: 0.6 }}
+                  />
+                </TouchableOpacity>
               </View>
             ))
           ) : (
@@ -159,20 +172,39 @@ const ProductCreation = () => {
   );
 };
 
-export default ProductCreation;
+export default ProductPhotoCreation;
 
 const styles = StyleSheet.create({
+  photoGalleryContainer: {
+    flex: 1,
+    flexDirection: "row",
+    width: "100%",
+    flexWrap: "wrap"
+  },
   photoContainer: {
     marginVertical: 10,
     width: "25%",
     height: 150,
     padding: 5,
-    resizeMode: "cover"
+    resizeMode: "cover",
+    position: "relative"
   },
   emptyImg: {
     marginVertical: 10,
     width: "25%",
     height: 150,
     padding: 5
+  },
+  removeImgButton: {
+    width: 30,
+    height: 30,
+    position: "absolute",
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "rgba(0, 0, 0, 0.6)",
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "flex-end"
   }
 });
