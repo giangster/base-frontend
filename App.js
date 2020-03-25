@@ -8,6 +8,7 @@ import useLinking from "./components/navigation/useLinking";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
 import Colors from "./constants/Colors";
+import Firebase, { FirebaseProvider } from "./config/Firebase";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -46,47 +47,26 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <NavigationContainer
-        ref={containerRef}
-        initialState={initialNavigationState}
-      >
-        <Stack.Navigator
-          headerMode="none"
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: Colors.tabBar
-            },
-            headerTintColor: "black",
-            headerTitleStyle: {
-              fontWeight: "bold"
-            },
-            headerTitleStyle: {
-              color: "black",
-              fontSize: 20,
-              fontFamily: "Acronym-ExtraBlack"
-            }
-          }}
-          options={{
-            headerTitleStyle: {
-              color: "black",
-              fontSize: 20,
-              fontFamily: "Acronym-ExtraBlack"
-            }
-          }}
+      <FirebaseProvider value={Firebase}>
+        <NavigationContainer
+          ref={containerRef}
+          initialState={initialNavigationState}
         >
-          <Stack.Screen
-            name="Root"
-            component={BottomTabNavigator}
-            options={{
-              headerTitleStyle: {
-                color: "black",
-                fontSize: 20,
-                fontFamily: "Acronym-ExtraBlack"
-              }
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          <Stack.Navigator headerMode="none">
+            <Stack.Screen
+              name="Root"
+              component={BottomTabNavigator}
+              options={{
+                headerTitleStyle: {
+                  color: "black",
+                  fontSize: 20,
+                  fontFamily: "Acronym-ExtraBlack"
+                }
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FirebaseProvider>
     );
   }
 }

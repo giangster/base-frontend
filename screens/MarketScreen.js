@@ -4,13 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Market from "../components/market-view/Market";
 import ProductListing from "../components/product/ProductListing";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 
-const MarketScreen = () => {
-  const navigation = useNavigation();
+const MarketScreen = ({ navigation }) => {
+  const navigationBack = useNavigation();
 
   return (
     <Stack.Navigator
@@ -30,7 +30,7 @@ const MarketScreen = () => {
           headerLeft: () => (
             <TouchableOpacity
               style={{ marginLeft: 20, width: "100%" }}
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate("Market")}
             >
               <Ionicons name="ios-arrow-back" size={30} />
             </TouchableOpacity>
