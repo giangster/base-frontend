@@ -98,7 +98,7 @@ const ProductListing = () => {
       </View>
       <BaseBuySafe />
       <CustomButton>
-        Buy it now{" "}
+        Buy it now
         <MaterialCommunityIcons name="cart" size={20} color="white" />
       </CustomButton>
     </ScrollView>

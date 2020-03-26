@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Market from "../components/market-view/Market";
-import ProductListing from "../components/product/ProductListing";
+import Market from "../../components/market-view/Market";
+import ProductListing from "../../components/market-view/ProductListing";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";

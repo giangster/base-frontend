@@ -19,9 +19,6 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
-    },
-    "infoPlist": {
-      "LSApplicationQueriesSchemes": ["lyft"]
     }
   }
 }

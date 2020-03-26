@@ -7,7 +7,7 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
-import ProductCard from "../product/ProductCard";
+import ProductCard from "./ProductCard";
 
 let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 5];
 

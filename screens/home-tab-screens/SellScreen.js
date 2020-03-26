@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
-import ProductPhotoCreation from "../components/sell-view/ProductPhotoCreation";
+import ProductPhotoCreation from "../../components/sell-view/ProductPhotoCreation";
 import { Ionicons } from "@expo/vector-icons";
-import ProductDetailCreation from "../components/sell-view/ProductDetailCreation";
-import ProductOverview from "../components/sell-view/ProductOverview";
+import ProductDetailCreation from "../../components/sell-view/ProductDetailCreation";
+import ProductOverview from "../../components/sell-view/ProductOverview";
 
 const Stack = createStackNavigator();
 

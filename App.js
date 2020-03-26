@@ -4,14 +4,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import BottomTabNavigator from "./components/navigation/BottomNavigation";
 import useLinking from "./components/navigation/useLinking";
-
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
 import Colors from "./constants/Colors";
 import Firebase, { FirebaseProvider } from "./config/Firebase";
+import ProfileSettings from "./components/profile-view/ProfileSettings";
+import Profile from "./components/profile-view/Profile";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);

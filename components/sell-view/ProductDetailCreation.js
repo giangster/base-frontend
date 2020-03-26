@@ -13,6 +13,8 @@ import RNPickerSelect from "react-native-picker-select";
 import Slider from "react-native-slider";
 import Swiper from "react-native-swiper";
 import Colors from "../../constants/Colors";
+import CustomButton from "../customization/CustomButton";
+import MatkahuoltoInfo from "../customization/MatkahuoltoInfo";
 
 const ProductDetailCreation = () => {
   let imgArr = [1, 2, 3, 4, 5];
@@ -57,7 +59,11 @@ const ProductDetailCreation = () => {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1, flexDirection: "column", justifyContent: "center" }}
+      style={{
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "center"
+      }}
       behavior="padding"
       enabled
       keyboardVerticalOffset={100}
@@ -150,8 +156,14 @@ const ProductDetailCreation = () => {
               />
             </View>
           </View>
-          {price > 0 ? <Text>{getSellerPrice(price)}</Text> : null}
+          {price > 0 ? (
+            <Text style={styles.sellerPrice}>
+              You will get {getSellerPrice(price)}€
+            </Text>
+          ) : null}
         </View>
+        <CustomButton>Publish</CustomButton>
+        <MatkahuoltoInfo style={{ marginBottom: 20 }} />
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -162,7 +174,8 @@ export default ProductDetailCreation;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    padding: 10
+    padding: 10,
+    marginBottom: 20
   },
   dotStyle: {
     backgroundColor: "rgba(255, 255, 255, 0.48)"
@@ -228,13 +241,11 @@ const styles = StyleSheet.create({
   sliderContainer: {
     alignSelf: "center",
     width: "80%",
-
     justifyContent: "center"
   },
   sliderTrack: {
     height: 1,
     width: "100%",
-
     backgroundColor: "#c9ced7"
   },
   sliderThumb: {
@@ -252,6 +263,12 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 100,
     backgroundColor: "#ffffff"
+  },
+  sellerPrice: {
+    fontFamily: "Montserrat-Medium",
+    fontSize: 16,
+    paddingVertical: 15,
+    alignSelf: "center"
   }
 });
 
