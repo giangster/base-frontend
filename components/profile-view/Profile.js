@@ -29,10 +29,10 @@ const Profile = ({ navigation }) => {
     // >
     //   <Stack.Screen name="Profile" component={Profile} />
     // </Stack.Navigator>
-    <View style={{ width: "100%" }}>
+    <ScrollView style={{ width: "100%" }}>
       <ProfileSubNav />
       <Text>mm</Text>
-    </View>
+    </ScrollView>
   );
 };
 

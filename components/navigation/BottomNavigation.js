@@ -5,6 +5,7 @@ import MarketScreen from "../../screens/home-tab-screens/MarketScreen";
 import SellScreen from "../../screens/home-tab-screens/SellScreen";
 import ProfileScreen from "../../screens/home-tab-screens/ProfileScreen";
 import InboxScreen from "../../screens/home-tab-screens/InboxScreen";
+import ProfileDrawerNavigation from "./ProfileDrawerNavigation";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Shop";
@@ -75,7 +76,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileDrawerNavigation}
         options={{
           title: "Profile",
           tabBarIcon: ({ focused }) => (
