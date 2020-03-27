@@ -2,7 +2,7 @@ import * as React from "react";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 
-import Colors from "../../constants/Colors";
+import Colors from "../../../constants/Colors";
 
 export default function TabBarIcon(props) {
   let icon = null;

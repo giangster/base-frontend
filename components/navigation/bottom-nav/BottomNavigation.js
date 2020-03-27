@@ -1,11 +1,11 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabBarIcon from "./TabBarIcon";
-import MarketScreen from "../../screens/home-tab-screens/MarketScreen";
-import SellScreen from "../../screens/home-tab-screens/SellScreen";
-import ProfileScreen from "../../screens/home-tab-screens/ProfileScreen";
-import InboxScreen from "../../screens/home-tab-screens/InboxScreen";
-import ProfileDrawerNavigation from "./ProfileDrawerNavigation";
+import MarketScreen from "../../../screens/home-tab-screens/MarketScreen";
+import SellScreen from "../../../screens/home-tab-screens/SellScreen";
+import ProfileScreen from "../../../screens/home-tab-screens/ProfileScreen";
+import InboxScreen from "../../../screens/home-tab-screens/InboxScreen";
+import ProfileDrawerNavigation from "../drawer-nav/ProfileDrawerNavigation";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Shop";

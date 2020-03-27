@@ -5,6 +5,15 @@ const ProfileSettings = ({ navigation }) => {
   return (
     <View>
       <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Text>settings</Text>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
   );
 };

@@ -11,24 +11,6 @@ const Stack = createStackNavigator();
 
 const Profile = ({ navigation }) => {
   return (
-    // <Stack.Navigator
-    //   screenOptions={{
-    //     headerTitleStyle: {
-    //       color: "black",
-    //       fontSize: 20,
-    //       fontFamily: "Acronym-ExtraBlack"
-    //     }
-    //   }}
-    //   screenOptions={{
-    //     headerRight: () => (
-    //       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-    //         <Ionicons name="ios-settings" size={24} />
-    //       </TouchableOpacity>
-    //     )
-    //   }}
-    // >
-    //   <Stack.Screen name="Profile" component={Profile} />
-    // </Stack.Navigator>
     <ScrollView style={{ width: "100%" }}>
       <ProfileSubNav />
       <Text>mm</Text>

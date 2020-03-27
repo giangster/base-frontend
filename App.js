@@ -2,7 +2,7 @@ import * as React from "react";
 import { SplashScreen } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import BottomTabNavigator from "./components/navigation/BottomNavigation";
+import BottomTabNavigator from "./components/navigation/bottom-nav/BottomNavigation";
 import useLinking from "./components/navigation/useLinking";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";

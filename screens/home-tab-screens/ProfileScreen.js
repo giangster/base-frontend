@@ -23,7 +23,11 @@ const ProfileScreen = ({ navigation }) => {
         },
         headerRight: () => (
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Ionicons name="ios-settings" size={24} />
+            <Ionicons
+              name="ios-settings"
+              size={24}
+              style={{ marginRight: 15 }}
+            />
           </TouchableOpacity>
         )
       }}
