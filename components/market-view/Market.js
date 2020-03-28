@@ -2,10 +2,9 @@ import React from "react";
 import {
   StyleSheet,
   SafeAreaView,
-  ScrollView,
   View,
   FlatList,
-  TouchableOpacity
+  TouchableHighlight
 } from "react-native";
 import ProductCard from "./ProductCard";
 
@@ -18,12 +17,12 @@ const Market = ({ navigation }) => {
         <FlatList
           data={arr}
           renderItem={({ item }) => (
-            <TouchableOpacity
+            <TouchableHighlight
               onPress={() => navigation.navigate("Product")}
               style={{ flex: 1, flexDirection: "column", margin: 1 }}
             >
               <ProductCard />
-            </TouchableOpacity>
+            </TouchableHighlight>
           )}
           numColumns={2}
           keyExtractor={(item, index) => index}

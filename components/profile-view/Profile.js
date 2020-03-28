@@ -13,11 +13,10 @@ const Profile = ({ navigation }) => {
   return (
     <ScrollView style={{ width: "100%" }}>
       <ProfileSubNav />
-      <Text>mm</Text>
     </ScrollView>
   );
 };
 
 export default Profile;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ container: { backgroundColor: "white" } });

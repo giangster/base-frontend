@@ -25,9 +25,9 @@ const CustomDrawer = ({ navigation }) => {
         <View style={styles.userInfoContainer}>
           <Image
             style={styles.userPhoto}
-            source={require("../../../assets/images/icon.png")}
+            source={require("../../../assets/images/mayapolarbear.png")}
           />
-          <Text style={styles.username}>@username</Text>
+          <Text style={styles.username}>@mayapolarbear</Text>
         </View>
         <TouchableOpacity
           style={styles.drawerItem}
@@ -49,7 +49,7 @@ const CustomDrawer = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.baseAppInfo}>
-        <Text style={styles.baseAppInfoLabel}>BASE App. © 2020</Text>
+        <Text style={styles.baseAppInfoLabel}>BASE Beta © 2020</Text>
       </View>
     </View>
   );
@@ -63,15 +63,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between"
   },
-  drawerMain: { width: "80%", alignItems: "center", justifyContent: "center" },
+  drawerMain: {
+    width: "80%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
   userInfoContainer: {
     height: 200,
+    marginBottom: 30,
     alignItems: "center",
     justifyContent: "center",
     paddingTop: Platform.OS == "android" ? 20 : 0
   },
   username: { fontSize: 18, fontFamily: "Montserrat-Medium" },
-  userPhoto: { width: 70, height: 70, marginBottom: 20, borderRadius: 50 },
+  userPhoto: { width: 80, height: 80, marginBottom: 10, borderRadius: 50 },
   drawerItem: {
     marginVertical: 10,
     width: "80%",
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
   },
   baseAppInfo: { marginBottom: 20 },
   baseAppInfoLabel: {
-    fontFamily: "Montserrat-Light",
+    fontFamily: "Montserrat-Medium",
     fontSize: 10,
     color: Colors.productInfo
   }

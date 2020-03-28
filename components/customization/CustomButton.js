@@ -1,12 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableHighlight
+} from "react-native";
 import Colors from "../../constants/Colors";
 
 const CustomButton = props => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableHighlight style={styles.container}>
       <Text style={[props.style, styles.button]}>{props.children}</Text>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 

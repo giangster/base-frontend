@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  ScrollView,
-  Image,
-  View,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, Text, ScrollView, Image, View } from "react-native";
 import Swiper from "react-native-swiper";
 import { Rating } from "react-native-elements";
 import Colors from "../../constants/Colors";
 import CustomButton from "../customization/CustomButton";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import BaseBuySafe from "../customization/BaseBuySafe";
 
 let productObj = {

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 
 const CustomerService = ({ navigation }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Customer Service</Text>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
@@ -12,4 +12,6 @@ const CustomerService = ({ navigation }) => {
 
 export default CustomerService;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center", alignItems: "center" }
+});
