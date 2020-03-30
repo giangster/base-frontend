@@ -12,7 +12,7 @@ import ProfileSettings from "../../components/profile-view/ProfileSettings";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = ({ navigation, route }) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -32,7 +32,7 @@ const ProfileScreen = ({ navigation }) => {
         )
       }}
     >
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name={`${route.params.user}`} component={Profile} />
     </Stack.Navigator>
   );
 };

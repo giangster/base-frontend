@@ -15,6 +15,7 @@ export default function BottomTabNavigator({ navigation, route }) {
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  let currentUser = "kkxd";
 
   return (
     <BottomTab.Navigator
@@ -75,6 +76,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
+        initialParams={{ user: currentUser }}
         name="Profile"
         component={ProfileDrawerNavigation}
         options={{
