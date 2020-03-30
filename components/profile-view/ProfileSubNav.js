@@ -17,48 +17,6 @@ const ProfileSubNav = () => {
           <Text>Helsinki, Finland</Text>
         </View>
       </View>
-
-      {/* <View
-        style={{
-          width: "100%",
-          marginTop: 20,
-          height: 50,
-          flexDirection: "row",
-          paddingHorizontal: 50,
-          justifyContent: "space-between", borderTopWidth
-        }}
-      >
-        <Text
-          style={{
-            fontFamily: "Montserrat-Medium",
-            fontSize: 14,
-            marginVertical: 16,
-            textTransform: "uppercase"
-          }}
-        >
-          Selling
-        </Text>
-        <Text
-          style={{
-            fontFamily: "Montserrat-Medium",
-            fontSize: 14,
-            marginVertical: 16,
-            textTransform: "uppercase"
-          }}
-        >
-          Sold
-        </Text>
-        <Text
-          style={{
-            fontFamily: "Montserrat-Medium",
-            fontSize: 14,
-            marginVertical: 16,
-            textTransform: "uppercase"
-          }}
-        >
-          Saved
-        </Text>
-      </View> */}
     </View>
   );
 };
@@ -67,7 +25,8 @@ export default ProfileSubNav;
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomColor: "black"
+    borderBottomColor: "black",
+    backgroundColor: "white"
   },
   profilePicture: {
     width: 100,

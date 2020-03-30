@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Profile from "../../components/profile-view/Profile";
+import InboxTabs from "../../components/inbox-view/InboxTabs";
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ const InboxScreen = ({ navigation }) => {
         }
       }}
     >
-      <Stack.Screen name="Inbox" component={Profile} />
+      <Stack.Screen name="Inbox" component={InboxTabs} />
     </Stack.Navigator>
   );
 };

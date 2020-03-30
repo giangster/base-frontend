@@ -1,14 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const ProductOverview = () => {
+const SoldItems = () => {
   return (
     <View>
-      <Text>jnfkjnfksn</Text>
+      <Text>Sold Sold Sold</Text>
     </View>
   );
 };
 
-export default ProductOverview;
+export default SoldItems;
 
 const styles = StyleSheet.create({});
