@@ -10,7 +10,7 @@ import Colors from "../../constants/Colors";
 
 const CustomButton = props => {
   return (
-    <TouchableHighlight style={styles.container}>
+    <TouchableHighlight style={styles.container} onPress={props.onPress}>
       <Text style={[props.style, styles.button]}>{props.children}</Text>
     </TouchableHighlight>
   );

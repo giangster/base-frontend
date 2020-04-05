@@ -8,21 +8,63 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
 import Colors from "./constants/Colors";
-import Firebase, { FirebaseProvider } from "./config/Firebase";
 import ProfileSettings from "./components/profile-view/ProfileSettings";
 import Profile from "./components/profile-view/Profile";
+import SignUp from "./components/signin-signup/SignUp";
+import { firebaseConfig } from "./config/Firebase/firebaseConfig";
+import * as firebase from "firebase";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+const AuthContext = React.createContext();
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  const [state, dispatch] = React.useReducer(
+    (prevState, action) => {
+      switch (action.type) {
+        case "RESTORE_TOKEN":
+          return {
+            ...prevState,
+            userToken: action.token,
+            isLoading: false
+          };
+        case "SIGN_IN":
+          return {
+            ...prevState,
+            isSignout: false,
+            userToken: action.token
+          };
+        case "SIGN_OUT":
+          return {
+            ...prevState,
+            isSignout: true,
+            userToken: null
+          };
+      }
+    },
+    {
+      isLoading: true,
+      isSignout: false,
+      userToken: null
+    }
+  );
+
+  if (!firebase.apps.length) {
+    console.log("Firebase initialized");
+    firebase.initializeApp(firebaseConfig);
+  }
 
   React.useEffect(() => {
+    // Initialize Firebase
+
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
@@ -46,30 +88,99 @@ export default function App(props) {
     loadResourcesAndDataAsync();
   }, []);
 
+  const authContext = React.useMemo(
+    () => ({
+      signIn: async ({ email, password }) => {
+        // Early return technique
+        if (!email || !password) {
+          alert("Please enter email and password");
+          return;
+        }
+
+        try {
+          const response = await firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password);
+
+          if (response) {
+            dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+          }
+        } catch (err) {
+          switch (err.code) {
+            case "auth/user-not-found":
+              alert("User does not exists. Try signing up");
+              break;
+
+            case "auth/invalid-email":
+              alert("Please enter a valid email");
+          }
+        }
+      },
+      signOut: () => dispatch({ type: "SIGN_OUT" }),
+      signUp: async ({ email, password }) => {
+        if (!email || !password) {
+          alert("Please enter email and password");
+          return;
+        }
+
+        if (email && password) {
+          try {
+            const response = await firebase
+              .auth()
+              .createUserWithEmailAndPassword(email, password);
+            if (response) {
+              //Sign in user
+              const user = await firebase
+                .database()
+                .ref("users/")
+                .child(response.user.uid)
+                .set({ email: response.user.uid, uid: response.user.uid });
+
+              dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+            }
+          } catch (err) {
+            if (err.code == "auth/email-already-in-use") {
+              alert("User already exists. Try logging in");
+            }
+          }
+        }
+      }
+    }),
+    []
+  );
+
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return null;
   } else {
     return (
-      <FirebaseProvider value={Firebase}>
+      <AuthContext.Provider value={authContext}>
         <NavigationContainer
           ref={containerRef}
           initialState={initialNavigationState}
         >
           <Stack.Navigator headerMode="none">
-            <Stack.Screen
-              name="Root"
-              component={BottomTabNavigator}
-              options={{
-                headerTitleStyle: {
-                  color: "black",
-                  fontSize: 20,
-                  fontFamily: "Acronym-ExtraBlack"
-                }
-              }}
-            />
+            {state.userToken === null ? (
+              <Stack.Screen
+                name="Log In"
+                component={SignUp}
+                initialParams={{ AuthContext: AuthContext }}
+              />
+            ) : (
+              <Stack.Screen
+                name="Root"
+                component={BottomTabNavigator}
+                options={{
+                  headerTitleStyle: {
+                    color: "black",
+                    fontSize: 20,
+                    fontFamily: "Acronym-ExtraBlack"
+                  }
+                }}
+              />
+            )}
           </Stack.Navigator>
         </NavigationContainer>
-      </FirebaseProvider>
+      </AuthContext.Provider>
     );
   }
 }
