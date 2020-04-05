@@ -7,10 +7,8 @@ import useLinking from "./components/navigation/useLinking";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
-import Colors from "./constants/Colors";
-import ProfileSettings from "./components/profile-view/ProfileSettings";
-import Profile from "./components/profile-view/Profile";
 import SignUp from "./components/signin-signup/SignUp";
+import SignIn from "./components/signin-signup/SignIn";
 import { firebaseConfig } from "./config/Firebase/firebaseConfig";
 import * as firebase from "firebase";
 
@@ -160,11 +158,18 @@ export default function App(props) {
         >
           <Stack.Navigator headerMode="none">
             {state.userToken === null ? (
-              <Stack.Screen
-                name="Log In"
-                component={SignUp}
-                initialParams={{ AuthContext: AuthContext }}
-              />
+              <>
+                <Stack.Screen
+                  name="Sign In"
+                  component={SignIn}
+                  initialParams={{ AuthContext: AuthContext }}
+                />
+                <Stack.Screen
+                  name="Sign Up"
+                  component={SignUp}
+                  initialParams={{ AuthContext: AuthContext }}
+                />
+              </>
             ) : (
               <Stack.Screen
                 name="Root"
