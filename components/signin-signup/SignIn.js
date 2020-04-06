@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Image, View, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import CustomButton from "../customization/CustomButton";
 import Colors from "../../constants/Colors";
 
@@ -31,13 +38,12 @@ const SignIn = props => {
           <CustomButton onPress={() => signIn({ email, password })}>
             Sign in
           </CustomButton>
-        </View>
-
-        <Text style={styles.signUpText}>Don't have an account yet?</Text>
-        <View style={styles.signInButton}>
-          <CustomButton onPress={() => props.navigation.navigate("Sign Up")}>
-            Sign up
-          </CustomButton>
+          <Text style={styles.signUpText}>Don't have an account yet?</Text>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("Sign Up")}
+          >
+            <Text style={styles.signUpButton}>Sign up</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -81,10 +87,13 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-Light",
     textAlignVertical: "top"
   },
-  signInButton: {
-    marginTop: 20
+  signInButton: { marginTop: 20 },
+  signUpButton: {
+    alignSelf: "center",
+    marginVertical: 20,
+    fontFamily: "Montserrat-Bold",
+    textDecorationColor: "black",
+    textDecorationLine: "underline"
   },
-  signUpText: {
-    fontFamily: "Montserrat-Medium"
-  }
+  signUpText: { alignSelf: "center", fontFamily: "Montserrat-Medium" }
 });

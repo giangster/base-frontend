@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import CustomButton from "../customization/CustomButton";
 import Colors from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUp = props => {
   const [username, setUsername] = useState("");
@@ -11,11 +19,17 @@ const SignUp = props => {
   const [email, setEmail] = useState("");
 
   const { signUp } = React.useContext(props.route.params.AuthContext);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={{ width: "90%", top: 0, marginLeft: 20, marginTop: 50 }}
+        onPress={() => navigation.goBack()}
+      >
+        <Ionicons name="ios-arrow-back" size={30} />
+      </TouchableOpacity>
       <View style={styles.signUpContainer}>
-        <Text>Sign Up Easily</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={text => setFirstName(text)}
@@ -65,11 +79,11 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    flex: 1
   },
   signUpContainer: {
+    alignSelf: "center",
+    justifyContent: "center",
     width: "90%",
     padding: 30,
     borderWidth: 1,
