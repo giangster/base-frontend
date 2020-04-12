@@ -5,14 +5,14 @@ import {
   Image,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import CustomButton from "../customization/CustomButton";
 import Colors from "../../constants/Colors";
 
-const SignIn = props => {
+const SignIn = (props) => {
   const { signIn } = React.useContext(props.route.params.AuthContext);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <View style={styles.container}>
@@ -22,15 +22,17 @@ const SignIn = props => {
           source={require("../../assets/images/logo.png")}
         />
         <TextInput
+          autoCapitalize="none"
           style={styles.textInput}
-          onChangeText={text => setUsername(text)}
-          placeholder="Username"
-          value={username}
+          onChangeText={(text) => setEmail(text)}
+          placeholder="Email"
+          value={email}
         />
         <TextInput
+          autoCapitalize="none"
           style={styles.textInput}
           secureTextEntry={true}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           placeholder="Password"
           value={password}
         />
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   signInContainer: {
     width: "90%",
@@ -67,12 +69,12 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    borderRadius: 10
+    borderRadius: 10,
   },
   baseLogo: { alignSelf: "center", marginVertical: 40, width: 270, height: 90 },
   textInput: {
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 16,
     fontFamily: "Montserrat-Light",
-    textAlignVertical: "top"
+    textAlignVertical: "top",
   },
   signInButton: { marginTop: 20 },
   signUpButton: {
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     fontFamily: "Montserrat-Bold",
     textDecorationColor: "black",
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
   },
-  signUpText: { alignSelf: "center", fontFamily: "Montserrat-Medium" }
+  signUpText: { alignSelf: "center", fontFamily: "Montserrat-Medium" },
 });

@@ -4,15 +4,14 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import CustomButton from "../customization/CustomButton";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const SignUp = props => {
-  const [username, setUsername] = useState("");
+const SignUp = (props) => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -32,13 +31,13 @@ const SignUp = props => {
       <View style={styles.signUpContainer}>
         <TextInput
           style={styles.textInput}
-          onChangeText={text => setFirstName(text)}
+          onChangeText={(text) => setFirstName(text)}
           placeholder="First Name"
           value={firstName}
         />
         <TextInput
           style={styles.textInput}
-          onChangeText={text => setLastName(text)}
+          onChangeText={(text) => setLastName(text)}
           placeholder="Last Name"
           value={lastName}
         />
@@ -46,27 +45,23 @@ const SignUp = props => {
           autoCapitalize="none"
           style={styles.textInput}
           keyboardType="email-address"
-          onChangeText={text => setEmail(text)}
+          onChangeText={(text) => setEmail(text)}
           placeholder="Email"
           value={email}
         />
-        <TextInput
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={text => setUsername(text)}
-          placeholder="Username"
-          value={username}
-        />
+
         <TextInput
           autoCapitalize="none"
           style={styles.textInput}
           secureTextEntry={true}
-          onChangeText={text => setPassword(text)}
+          onChangeText={(text) => setPassword(text)}
           placeholder="Password"
           value={password}
         />
         <View style={styles.signUpButton}>
-          <CustomButton onPress={() => signUp({ email, password })}>
+          <CustomButton
+            onPress={() => signUp({ email, password, firstName, lastName })}
+          >
             Submit
           </CustomButton>
         </View>
@@ -79,7 +74,7 @@ export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   signUpContainer: {
     alignSelf: "center",
@@ -92,12 +87,12 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
-    borderRadius: 10
+    borderRadius: 10,
   },
   textInput: {
     marginTop: 10,
@@ -109,9 +104,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 16,
     fontFamily: "Montserrat-Light",
-    textAlignVertical: "top"
+    textAlignVertical: "top",
   },
   signUpButton: {
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });

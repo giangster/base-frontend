@@ -11,10 +11,10 @@ import SignUp from "./components/signin-signup/SignUp";
 import SignIn from "./components/signin-signup/SignIn";
 import { firebaseConfig } from "./config/Firebase/firebaseConfig";
 import * as firebase from "firebase";
+import "firebase/firestore";
+import { decode, encode } from "base-64";
 
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 
 const AuthContext = React.createContext();
 
@@ -24,7 +24,15 @@ export default function App(props) {
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  let app;
 
+  if (!global.btoa) {
+    global.btoa = encode;
+  }
+
+  if (!global.atob) {
+    global.atob = decode;
+  }
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -32,37 +40,37 @@ export default function App(props) {
           return {
             ...prevState,
             userToken: action.token,
-            isLoading: false
+            isLoading: false,
           };
         case "SIGN_IN":
           return {
             ...prevState,
             isSignout: false,
-            userToken: action.token
+            userToken: action.token,
           };
         case "SIGN_OUT":
           return {
             ...prevState,
             isSignout: true,
-            userToken: null
+            userToken: null,
           };
       }
     },
     {
       isLoading: true,
       isSignout: false,
-      userToken: null
+      userToken: null,
     }
   );
 
   if (!firebase.apps.length) {
     console.log("Firebase initialized");
-    firebase.initializeApp(firebaseConfig);
+    app = firebase.initializeApp(firebaseConfig);
   }
 
-  React.useEffect(() => {
-    // Initialize Firebase
+  const db = firebase.firestore(app);
 
+  React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
@@ -73,7 +81,7 @@ export default function App(props) {
           "Acronym-ExtraBlack": require("./assets/fonts/Acronym-Extrablack_Italic.otf"),
           "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
           "Montserrat-Medium": require("./assets/fonts/Montserrat-Medium.ttf"),
-          "Montserrat-Light": require("./assets/fonts/Montserrat-Light.ttf")
+          "Montserrat-Light": require("./assets/fonts/Montserrat-Light.ttf"),
         });
       } catch (e) {
         console.warn(e);
@@ -115,7 +123,7 @@ export default function App(props) {
         }
       },
       signOut: () => dispatch({ type: "SIGN_OUT" }),
-      signUp: async ({ email, password }) => {
+      signUp: async ({ email, password, firstName, lastName }) => {
         if (!email || !password) {
           alert("Please enter email and password");
           return;
@@ -127,12 +135,16 @@ export default function App(props) {
               .auth()
               .createUserWithEmailAndPassword(email, password);
             if (response) {
-              //Sign in user
-              const user = await firebase
-                .database()
-                .ref("users/")
-                .child(response.user.uid)
-                .set({ email: response.user.uid, uid: response.user.uid });
+              console.log(response);
+              const user = await db
+                .collection("users")
+                .doc(response.user.uid)
+                .set({
+                  uid: response.user.uid,
+                  email: response.user.email,
+                  firstName: firstName,
+                  lastName: lastName,
+                });
 
               dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
             }
@@ -142,7 +154,7 @@ export default function App(props) {
             }
           }
         }
-      }
+      },
     }),
     []
   );
@@ -178,8 +190,8 @@ export default function App(props) {
                   headerTitleStyle: {
                     color: "black",
                     fontSize: 20,
-                    fontFamily: "Acronym-ExtraBlack"
-                  }
+                    fontFamily: "Acronym-ExtraBlack",
+                  },
                 }}
               />
             )}
