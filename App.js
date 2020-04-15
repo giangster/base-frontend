@@ -16,7 +16,7 @@ import { decode, encode } from "base-64";
 
 const Stack = createStackNavigator();
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -33,6 +33,7 @@ export default function App(props) {
   if (!global.atob) {
     global.atob = decode;
   }
+
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -122,7 +123,15 @@ export default function App(props) {
           }
         }
       },
-      signOut: () => dispatch({ type: "SIGN_OUT" }),
+      signOut: async () => {
+        try {
+          await firebase.auth().signOut();
+          dispatch({ type: "SIGN_OUT" });
+        } catch (err) {
+          console.log(err);
+          alert("Unable to sign out right now. Please try again later.");
+        }
+      },
       signUp: async ({ email, password, firstName, lastName }) => {
         if (!email || !password) {
           alert("Please enter email and password");
