@@ -10,14 +10,18 @@ import CustomerService from "../../profile-view/CustomerService";
 import Info from "../../profile-view/Info";
 
 const Drawer = createDrawerNavigator();
-const ProfileDrawerNavigation = () => {
+const ProfileDrawerNavigation = ({ navigation, route }) => {
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="My page"
       drawerPosition="right"
       drawerContent={props => <CustomDrawer {...props} />}
     >
-      <Drawer.Screen name="My page" component={ProfileScreen} />
+      <Drawer.Screen
+        name="My page"
+        component={ProfileScreen}
+        initialParams={{ user: route.params.user }}
+      />
       <Drawer.Screen name="Edit information" component={ProfileSettings} />
       <Drawer.Screen name="App info" component={Info} />
       <Drawer.Screen name="Customer service" component={CustomerService} />

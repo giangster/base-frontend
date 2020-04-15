@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 const LogInScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Login</Text>
     </View>
   );
@@ -11,4 +11,4 @@ const LogInScreen = () => {
 
 export default LogInScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ container: { flex: 1 } });
