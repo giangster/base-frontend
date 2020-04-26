@@ -10,6 +10,7 @@ import CustomButton from "../customization/CustomButton";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../contexts/auth/useAuth";
 
 const SignUp = (props) => {
   const [password, setPassword] = useState("");
@@ -17,7 +18,7 @@ const SignUp = (props) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
-  const { signUp } = React.useContext(props.route.params.AuthContext);
+  // const { signUp } = useAuth();
   const navigation = useNavigation();
 
   return (
@@ -49,7 +50,6 @@ const SignUp = (props) => {
           placeholder="Email"
           value={email}
         />
-
         <TextInput
           autoCapitalize="none"
           style={styles.textInput}

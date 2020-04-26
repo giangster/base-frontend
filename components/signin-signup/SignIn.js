@@ -9,46 +9,51 @@ import {
 } from "react-native";
 import CustomButton from "../customization/CustomButton";
 import Colors from "../../constants/Colors";
+import { useAuth } from "../../contexts/auth/useAuth";
+import { AuthProvider } from "../../contexts/auth/AuthProvider";
 
 const SignIn = (props) => {
-  const { signIn } = React.useContext(props.route.params.AuthContext);
+  const { signIn } = useAuth();
+  console.log(signIn);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <View style={styles.container}>
-      <View style={styles.signInContainer}>
-        <Image
-          style={styles.baseLogo}
-          source={require("../../assets/images/logo.png")}
-        />
-        <TextInput
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={(text) => setEmail(text)}
-          placeholder="Email"
-          value={email}
-        />
-        <TextInput
-          autoCapitalize="none"
-          style={styles.textInput}
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
-          placeholder="Password"
-          value={password}
-        />
-        <View style={styles.signInButton}>
-          <CustomButton onPress={() => signIn({ email, password })}>
-            Sign in
-          </CustomButton>
-          <Text style={styles.signUpText}>Don't have an account yet?</Text>
-          <TouchableOpacity
-            onPress={() => props.navigation.navigate("Sign Up")}
-          >
-            <Text style={styles.signUpButton}>Sign up</Text>
-          </TouchableOpacity>
+    <AuthProvider>
+      <View style={styles.container}>
+        <View style={styles.signInContainer}>
+          <Image
+            style={styles.baseLogo}
+            source={require("../../assets/images/logo.png")}
+          />
+          <TextInput
+            autoCapitalize="none"
+            style={styles.textInput}
+            onChangeText={(text) => setEmail(text)}
+            placeholder="Email"
+            value={email}
+          />
+          <TextInput
+            autoCapitalize="none"
+            style={styles.textInput}
+            secureTextEntry={true}
+            onChangeText={(text) => setPassword(text)}
+            placeholder="Password"
+            value={password}
+          />
+          <View style={styles.signInButton}>
+            <CustomButton onPress={() => signIn({ email, password })}>
+              Sign in
+            </CustomButton>
+            <Text style={styles.signUpText}>Don't have an account yet?</Text>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("Sign Up")}
+            >
+              <Text style={styles.signUpButton}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </AuthProvider>
   );
 };
 

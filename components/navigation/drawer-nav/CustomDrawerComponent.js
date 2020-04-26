@@ -8,55 +8,48 @@ import {
   Image,
 } from "react-native";
 import Colors from "../../../constants/Colors";
-import * as firebase from "firebase";
 import "firebase/auth";
-import { AuthContext } from "../../../App.js";
+import { useAuth } from "../../../contexts/auth/useAuth";
 
 const CustomDrawer = ({ navigation }) => {
+  const { signOut } = useAuth();
   return (
-    <AuthContext.Consumer>
-      {({ signOut }) => (
-        <View style={styles.container}>
-          <View style={styles.drawerMain}>
-            <View style={styles.userInfoContainer}>
-              <Image
-                style={styles.userPhoto}
-                source={require("../../../assets/images/mayapolarbear.png")}
-              />
-              <Text style={styles.username}>@mayapolarbear</Text>
-            </View>
-            <TouchableOpacity
-              style={styles.drawerItem}
-              onPress={() => navigation.navigate("Edit information")}
-            >
-              <Text style={styles.drawerLabel}>Edit information</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.drawerItem}
-              onPress={() => navigation.navigate("App info")}
-            >
-              <Text style={styles.drawerLabel}>App info</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.drawerItem}
-              onPress={() => navigation.navigate("Customer service")}
-            >
-              <Text style={styles.drawerLabel}>Customer service</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.drawerItem}
-              onPress={() => signOut()}
-            >
-              <Text style={styles.drawerLabel}>Sign out</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.baseAppInfo}>
-            <Text style={styles.baseAppInfoLabel}>BASE Beta © 2020</Text>
-          </View>
+    <View style={styles.container}>
+      <View style={styles.drawerMain}>
+        <View style={styles.userInfoContainer}>
+          <Image
+            style={styles.userPhoto}
+            source={require("../../../assets/images/mayapolarbear.png")}
+          />
+          <Text style={styles.username}>@mayapolarbear</Text>
         </View>
-      )}
-    </AuthContext.Consumer>
+        <TouchableOpacity
+          style={styles.drawerItem}
+          onPress={() => navigation.navigate("Edit information")}
+        >
+          <Text style={styles.drawerLabel}>Edit information</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.drawerItem}
+          onPress={() => navigation.navigate("App info")}
+        >
+          <Text style={styles.drawerLabel}>App info</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.drawerItem}
+          onPress={() => navigation.navigate("Customer service")}
+        >
+          <Text style={styles.drawerLabel}>Customer service</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.drawerItem} onPress={() => signOut()}>
+          <Text style={styles.drawerLabel}>Sign out</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.baseAppInfo}>
+        <Text style={styles.baseAppInfoLabel}>BASE Beta © 2020</Text>
+      </View>
+    </View>
   );
 };
 
